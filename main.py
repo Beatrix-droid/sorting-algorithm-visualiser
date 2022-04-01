@@ -8,13 +8,24 @@ pygame.init()
 class Draw_info:
 
     BLACK =  0,0,0
-    WHITE =  255, 255, 255, 255
+    WHITE =  255, 255, 255
     GREEN = 0,255, 0, 255
-    RED = 255, 0, 0
-    GREY = 128, 128, 128
     BG_COLOUR = WHITE
     SIDE_PADDING = 100 #50 PX on right, 50 px on left
     TOP_PADDING = 150
+
+    RED = 13, 98, 195
+    DARK_RED = 199, 37, 67
+    BORDEAUX = 178, 29, 80
+    DARK_MAGENTA = 157, 23, 100
+    PURPLE = 168, 37, 127
+    MAGENTA = 181, 44, 153
+
+
+
+    GRADIENTS = [ RED, DARK_RED,
+                 BORDEAUX, DARK_MAGENTA,
+                 PURPLE, MAGENTA ]
 
 
     def __init__(self, width, height, lst):
@@ -58,7 +69,8 @@ def draw(draw_info):
     #first fill the entire screen with a colour to "draw over" anything that has
     #been drawn previously
     draw_info.window.fill(draw_info.BG_COLOUR)
-    pygame.update()
+    draw_list(draw_info)
+    pygame.display.update()
 
 
 def draw_list(draw_info):
@@ -74,8 +86,10 @@ def draw_list(draw_info):
         #val- draw_info.min_val  tells us how much larger we are than the minimum
         y = draw_info.height - (val- draw_info.min_val )* draw_info.bar_height #determine the height of the rectangle.
 
-        color = draw_info.RED
-
+        #there are 6 colours in the gradients list. For each bar in the lst we are going to draw, we will assign a colour from the gradient list to that bar
+        # when we have iterated throguh the gradient list once, we shall start reassiging gradients from the very beginning of the gradients list.
+        colour = draw_info.GRADIENTS[i % 6]
+        pygame.draw.rect(draw_info.window, colour, (x, y, draw_info.bar_width, draw_info.height))
 
 
 
@@ -98,6 +112,8 @@ def main():
 
         pygame.display.update() ##update the screen
 
+        draw(draw_info)
+
         for event in pygame.event.get(): #will return a list of events that have occured since the last clock tick
 
             if event.type == pygame.QUIT:
@@ -108,3 +124,8 @@ def main():
 
 if __name__ == '__main__':
     main()
+
+
+
+
+#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
