@@ -94,6 +94,53 @@ def draw_list(draw_info):
 
 
 
+def heap_sort(lst, n, i):
+
+    """A function that implements the heap sort algorithm"""
+
+
+    largest = i
+    l = 2*i + 1 #eft child
+    r = 2 * i + 2 #right child
+
+
+    #see if left child of root exists and is greater than parent:
+    if l < n and lst[i] < lst[l]:
+        largest = l
+
+
+    #see if right child of root exists and is greater than parent:
+    if r < n and lst[i] < lst[r]:
+        largest = r
+
+    #change parent if needed
+    if largest != i:
+        lst[i], lst[largest], = lst[largest], lst[i] #swap the two nodes
+
+        #recursively call this function to heapify the parent node:
+        heap_sort(lst, n, largest)
+
+
+#main function to sort a given array
+
+def heapSort(lst):
+    n = len(lst)
+
+    #build a max heap
+    # Since last parent will be at ((n//2)-1) we can start at that location.
+
+    for i in range(n //2-1, -1, -1):
+        heap_sort(lst, n, i)
+
+    #one by one extract elements
+    for i in range(n-1, 0, -1):
+        lst[i], lst[0] = lst[0], lst[i] #swap
+        heap_sort(lst, i, 0)
+
+
+
+
+
 def main():
 
     run = True
@@ -122,10 +169,12 @@ def main():
     pygame.quit()
 
 
+
+
+
 if __name__ == '__main__':
     main()
 
 
 
-
-
+#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
