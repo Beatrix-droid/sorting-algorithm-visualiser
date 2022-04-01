@@ -18,7 +18,7 @@ class Draw_info:
 
 
     def __init__(self, width, height, lst):
-        self.widht = width
+        self.width = width
         self.height = height
 
         self.window = pygame.display.set_mode((width, height))
@@ -51,6 +51,34 @@ def generate_starting_list(n, min_val, max_val):
 
 
 
+def draw(draw_info):
+
+    """A function that draws the screen"""
+
+    #first fill the entire screen with a colour to "draw over" anything that has
+    #been drawn previously
+    draw_info.window.fill(draw_info.BG_COLOUR)
+    pygame.update()
+
+
+def draw_list(draw_info):
+
+    """A function that draws the list on the screen"""
+
+    #need to determin the height of the element and the width of the element and then draw a rectangle representing it
+
+    lst = draw_info.lst
+    for i, val in enumerate(lst):
+        x = draw_info.start_x + i*draw_info.bar_width  #bar width
+
+        #val- draw_info.min_val  tells us how much larger we are than the minimum
+        y = draw_info.height - (val- draw_info.min_val )* draw_info.bar_height #determine the height of the rectangle.
+
+        color = draw_info.RED
+
+
+
+
 
 def main():
 
@@ -63,7 +91,7 @@ def main():
     max_val = 100
 
     lst = generate_starting_list(n, min_val, max_val)
-    draw_info = Draw_info(800, 800)
+    draw_info = Draw_info(800, 800, lst)
 
     while run:
         clock.tick(60) #60 is max no of times this loop can run per second
@@ -72,8 +100,8 @@ def main():
 
         for event in pygame.event.get(): #will return a list of events that have occured since the last clock tick
 
-            if event == pygame.QUIT:
-                run == False
+            if event.type == pygame.QUIT:
+                run = False
 
     pygame.quit()
 
