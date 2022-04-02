@@ -7,13 +7,16 @@ pygame.init()
 
 class Draw_info:
 
+    """Class that contains information on the objects that need to be rendered
+    on the screen"""
+
     BLACK =  0,0,0
     WHITE =  255, 255, 255
     GREEN = 0,255, 0, 255
     BG_COLOUR = WHITE
-    SIDE_PADDING = 100 #50 PX on right, 50 px on left
+    SIDE_PADDING = 100 #50 PX on right, 50 px 3n left
     TOP_PADDING = 150
-    FONT = pygame.font.SysFont("Arial", 35)
+    FONT = pygame.font.SysFont("Arial", 22)
 
     RED = 13, 98, 195
     DARK_RED = 199, 37, 67
@@ -52,7 +55,7 @@ class Draw_info:
 
 def generate_starting_list(n, min_val, max_val):
 
-        """generate random list of numbers t sort"""
+        """generate random list of numbers to sort"""
 
         lst = []
         for i in range(n):
@@ -71,8 +74,11 @@ def draw(draw_info):
     draw_info.window.fill(draw_info.BG_COLOUR)
 
     #drawing the text. surface.blit() function draws a source Surface onto this Surface.
-    text = draw_info.FONT.render('Sorting Algorithm Visualiser',1, draw_info.BLACK)
-    draw_info.window.blit(text, (draw_info.width/2 - text.get_width()/2, 35))
+    text = draw_info.FONT.render('Sorting Algorithm Visualiser | SPACE start sorting | A ascending  D descending',1, draw_info.BLACK)
+    draw_info.window.blit(text, (draw_info.width/2 - text.get_width()/2, 10))
+    algorithms = draw_info.FONT.render('Heap Sort | Bubble Sort | Insertion Sort',1, draw_info.BLACK)
+    draw_info.window.blit(algorithms, (draw_info.width/2 - algorithms.get_width()/2, 60))
+
 
     draw_list(draw_info)
     pygame.display.update()
@@ -136,11 +142,11 @@ def main():
             if event.type == pygame.K_SPACE:
                 sorting == True
 
-                if event.type == pygame.KEYDOWN and not sorting:
+                if event.type == pygame.K_d and not sorting:
                     descending == True
 
 
-                if event.type == pygame.KEYUP and not sorting:
+                if event.type == pygame.K_a and not sorting:
                    descending == False
 
 
