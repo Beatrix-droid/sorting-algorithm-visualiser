@@ -2,8 +2,7 @@ from main import draw_info, draw_list
 
 def heap_sort(array, n, i):
 
-    """A function that implements the heap sort algorithm"""
-
+    """A function that creates a heap"""
 
     largest = i
     l = 2*i + 1 #eft child
@@ -30,6 +29,9 @@ def heap_sort(array, n, i):
 #main function to sort a given array
 
 def heapSort(array):
+    
+    """Function that sorts the array"""
+
     n = len(array)
 
     #build a max heap
@@ -47,6 +49,10 @@ def heapSort(array):
 
 
 def bubble_sort(draw_info, ascending = True):
+    
+    """A function that implements the bubble sorting algorithm,
+    defaults to ascending order"""
+    
     lst = draw_info.lst
     for i in range(len(lst)-1):
         for j in range(len(lst) -1 -i):

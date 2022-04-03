@@ -1,4 +1,5 @@
 
+import math
 import pygame
 import random
 
@@ -150,8 +151,14 @@ def main():
                    descending == False
 
 
-    pygame.quit()
+                if event.type == pygame.K_r :
+                    lst = generate_starting_list(n, min_val, max_val)
+                    draw_info = Draw_info(800, 800, lst)
+                    draw(draw_info)
 
+
+
+    pygame.quit()
 
 
 
