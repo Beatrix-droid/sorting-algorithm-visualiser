@@ -77,7 +77,7 @@ def draw(draw_info):
     #drawing the text. surface.blit() function draws a source Surface onto this Surface.
     text = draw_info.FONT.render('Sorting Algorithm Visualiser | SPACE start sorting | A ascending  D descending',1, draw_info.BLACK)
     draw_info.window.blit(text, (draw_info.width/2 - text.get_width()/2, 10))
-    algorithms = draw_info.FONT.render('Heap Sort | Bubble Sort | Insertion Sort',1, draw_info.BLACK)
+    algorithms = draw_info.FONT.render('H - Heap Sort | B - Bubble Sort | I - Insertion Sort | R - Reset',1, draw_info.BLACK)
     draw_info.window.blit(algorithms, (draw_info.width/2 - algorithms.get_width()/2, 60))
 
 
@@ -140,21 +140,23 @@ def main():
             if event.type == pygame.QUIT:
                 run = False
 
-            if event.type == pygame.K_SPACE:
-                sorting == True
 
-                if event.type == pygame.K_d and not sorting:
-                    descending == True
+            elif event.type == pygame.KEYDOWN:
 
+                if event.key == pygame.K_r :
+                        lst = generate_starting_list(n, min_val, max_val)
+                        draw_info.set_list(lst)
+                        sorting= False
 
-                if event.type == pygame.K_a and not sorting:
-                   descending == False
+                elif event.key == pygame.K_SPACE:
+                    sorting == True
 
+                elif event.key == pygame.K_d and not sorting:
+                        descending == True
 
-                if event.type == pygame.K_r :
-                    lst = generate_starting_list(n, min_val, max_val)
-                    draw_info = Draw_info(800, 800, lst)
-                    draw(draw_info)
+                elif event.key == pygame.K_a and not sorting:
+                    descending == False
+
 
 
 
